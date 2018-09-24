@@ -1,9 +1,9 @@
 package com.akrama.ridecompare
 
 import com.airbnb.mvrx.MvRxState
-import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.location.places.Place
 
 data class CompareModel(
-        val pickupLocationLatLng: LatLng? = null,
-        val destinationLatLng: LatLng? = null
+        val pickupLocation: Place? = null,
+        val destination: Place? = null
 ): MvRxState

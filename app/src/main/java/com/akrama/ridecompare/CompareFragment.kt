@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.fragmentViewModel
-import com.airbnb.mvrx.withState
 
 class CompareFragment : BaseMvRxFragment() {
 
@@ -20,8 +19,8 @@ class CompareFragment : BaseMvRxFragment() {
     }
 
     override fun invalidate() {
-        withState(compareViewModel) {
-            Log.d("CompareFragment", "Pickup location: ${it.pickupLocationString}")
+        compareViewModel.toViewState { viewState ->
+            Log.d("CompareFragment", viewState.destination)
         }
     }
 

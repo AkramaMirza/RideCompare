@@ -1,9 +1,9 @@
 package com.akrama.ridecompare
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.airbnb.mvrx.*
 
-class CompareActivity : AppCompatActivity() {
+class CompareActivity : BaseMvRxActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

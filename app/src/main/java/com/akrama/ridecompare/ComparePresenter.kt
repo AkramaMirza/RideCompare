@@ -12,8 +12,8 @@ object ComparePresenter {
                 showChangePickupLocationButton = isPickupLocationSelected,
                 showChangeDestinationButton = isDestinationSelected,
 
-                pickupLocation = dataModel.pickupLocation?.address.toString(),
-                destination = dataModel.destination?.address.toString()
+                pickupLocation = dataModel.pickupLocation?.address?.toString(),
+                destination = dataModel.destination?.address?.toString()
         )
     }
 }

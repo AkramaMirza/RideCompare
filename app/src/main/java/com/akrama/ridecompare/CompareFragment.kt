@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.fragmentViewModel
+import com.airbnb.mvrx.withState
 import com.google.android.gms.location.places.ui.PlacePicker
 import kotlinx.android.synthetic.main.fragment_compare.*
 
@@ -29,12 +30,25 @@ class CompareFragment : BaseMvRxFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         selectPickupLocationButton.setOnClickListener { openPickupLocationPicker() }
         selectDestinationButton.setOnClickListener { openDestinationPicker() }
+        lyftButton.setApiConfig(LyftApiHelper.apiConfig)
+        uberButton.setSession(UberApiHelper.session)
     }
 
     override fun invalidate() {
         compareViewModel.toViewState {
             pickupLocation?.let { selectPickupLocationButton.text = it }
             destination?.let { selectDestinationButton.text = it }
+        }
+
+        withState(compareViewModel) { dataModel ->
+            dataModel.lyftRideParams?.let {
+                lyftButton.setRideParams(it)
+                lyftButton.load()
+            }
+            dataModel.uberRideParams?.let {
+                uberButton.setRideParameters(it)
+                uberButton.loadRideInformation()
+            }
         }
     }
 

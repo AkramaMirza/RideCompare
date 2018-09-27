@@ -4,6 +4,11 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+def LYFT_CLIENT_ID = '"' + LyftClientId + '"'
+def LYFT_CLIENT_TOKEN = '"' + LyftClientToken + '"'
+def UBER_CLIENT_ID = '"' + UberClientId + '"'
+def UBER_SERVER_TOKEN = '"' + UberServerToken + '"'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -20,6 +25,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
+
+android.buildTypes.each { type ->
+    type.buildConfigField 'String', 'LYFT_CLIENT_ID', LYFT_CLIENT_ID
+    type.buildConfigField 'String', 'LYFT_CLIENT_TOKEN', LYFT_CLIENT_TOKEN
+    type.buildConfigField 'String', 'UBER_CLIENT_ID', UBER_CLIENT_ID
+    type.buildConfigField 'String', 'UBER_SERVER_TOKEN', UBER_SERVER_TOKEN
 }
 
 dependencies {

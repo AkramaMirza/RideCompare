@@ -12,8 +12,8 @@ object UberApiHelper {
 
     val session by lazy {
         val config = SessionConfiguration.Builder()
-                .setClientId("3Yl5e6RFV_5-1IRPNH7bLDJ-9zD-JO8N")
-                .setServerToken("_fPScDJea92vIXTjP8umctyDEwxUQUe0aGN4V285")
+                .setClientId(BuildConfig.UBER_CLIENT_ID)
+                .setServerToken(BuildConfig.UBER_SERVER_TOKEN)
                 .build()
         UberSdk.initialize(config)
         return@lazy ServerTokenSession(config)
